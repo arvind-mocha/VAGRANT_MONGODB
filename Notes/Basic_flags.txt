@@ -1,0 +1,12 @@
+flags:
+    Some of the most commonly used flags with mongod process
+
+    --dbpath => helps to mention the storage for mongod
+    --logpath => helps to store the logs
+    --bind_ip => used to bind ports outside our host
+    --replSet => replicaset name
+    --keyFile => location of the keyfile for client authentication
+    --fork => Helps to run our mongod at the background
+
+    Important:
+        Instead of using flags it is always recomended to use configuration files
