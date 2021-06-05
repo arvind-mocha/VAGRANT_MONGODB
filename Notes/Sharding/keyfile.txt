@@ -1,0 +1,11 @@
+Creating a directory to store keyfile:
+    sudo mkdir -p /var/mongodb/pki/ 
+
+Making user vagrant with password vagrant as the owner of this file:  
+    sudo chown vagrant:vagrant /var/mongodb/pki/
+
+Generating a keyfile with random values:    
+    openssl rand -base64 741 > /var/mongodb/pki/m103-keyfile
+
+Giving Permissions to our mongod to read this file:  
+    chmod 400 /var/mongodb/pki/m103-keyfile

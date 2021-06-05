@@ -7,6 +7,9 @@ flags:
     --replSet => replicaset name
     --keyFile => location of the keyfile for client authentication
     --fork => Helps to run our mongod at the background
-
+    --username => Username must be provided if authentication is enabled 
+    --password =>  password must be provided if authentication is enabled
+    --authenticationDatabase => If our role is specific to some database we can authenticate to that database only
+    
     Important:
         Instead of using flags it is always recomended to use configuration files

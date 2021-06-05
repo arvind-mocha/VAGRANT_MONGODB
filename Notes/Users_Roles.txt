@@ -5,6 +5,16 @@ First User to create:
     4. Then create this user before creating further users
 
     db.createUser(
+        {
+            user:"root",
+            pwd:"root",
+            roles:[{role:"root",db:"admin"}]
+        }
+    )
+
+    5.then create admin user and use it instead of root
+
+    db.createUser(
         {   
             user: "Arvind",
             pwd: "testtest",
@@ -21,3 +31,9 @@ First User to create:
     Commands:
         db.getUsers() // Get the available users
         db.grantRolesToUser( "dba",  [ { db: "playground", role: "dbOwner"  } ] ) // granting roles for other users
+
+    Note:
+        1. If authetication is enabled must provide username and password on the command line using --username and --password flag
+        2. We can also authenticate inside mongo shell by using this command db.auth( <username>, <password> )
+        3. Command to logout of current user db.logout(), we can also authenticate using other users or the same user itself
+        4. Only root user can shutdown the server

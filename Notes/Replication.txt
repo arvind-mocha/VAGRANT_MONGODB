@@ -1,6 +1,0 @@
-Replication:
-    1. Multiple Mongod Process combines to for a replica set
-    2. A replica set can contain upto 50 nodes
-    3. If the primary node fails then a secondary node would be elected as the primary node
-    4. It is always recommended to have odd number of nodes for voting purpose
-    5. Arbitary node do not have voting previleges
