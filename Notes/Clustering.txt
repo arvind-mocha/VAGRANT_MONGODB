@@ -1,0 +1,30 @@
+Mongod:
+    1. Mongod is a demon process (server) which run on port 27017 by default but it is always recomended to give --dbpath
+    2. A client can be connected to this port by using the mongo process
+    
+
+    Important:
+        1. If dbpath is not configured there must be a data/db folder in the directory where you run mongod process
+        2. Indexes and collections are stored inside the data folder
+        3. databases are stored inside the data/db folder
+
+Mongo:
+    1. Mongo is the client by default which gets connected to port 27017
+    2. It gives a mongo shell to work with the server
+
+    Note:
+        1. commands to shoutdown the mongod server
+            1. use admin // must use the admin database then
+            2. db.shutdownServer()
+
+        2. ps -f | mongo grep Command to check running mongo process
+
+flags:
+    Some of the most commonly used flags
+
+    --dbpath => helps to mention the storage for mongod
+    --logpath => helps to store the logs
+    --bind_ip => used to bind ports outside our host
+    --replSet => replicaset name
+    --keyFile => location of the keyfile for client authentication
+    --fork => Helps to run our mongod at the background

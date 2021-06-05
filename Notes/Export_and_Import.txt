@@ -1,0 +1,51 @@
+Export:
+	1.mongodump:
+		Syntax: mongodump --uri "<Atlas Cluster URI>"
+		
+		eg:	mongodump --uri "mongodb+srv://<username>:<password>.mongodb.net/<database>"
+
+		Usage:
+			1. Exports data in BSON
+
+		Output:
+			1. A folder named dump is create on the current directory which contains all data in Binary format
+
+	2.mongoexport:
+		Syntax: mongoexport --uri "<Atlas Cluster URI>"
+		
+		flags: 	--collection=<Collection name> //name of the collection to export 
+				--out=<filename.json> // where to store the collection
+
+		eg: mongoexport --uri "mongodb+srv://<username>:<password>.mongodb.net/<database>" --collection:<collection Name> --out=<json file>
+
+		Usage:
+			1. Exports data in Json				
+		
+		Output:
+			1. All documents in our collection are stored in a json file which we provided during mongoexport using the flag --out
+
+Import:
+
+	1.mongorestore:
+		Syntax: mongorestore --uri "<Atlas Cluster URI>"
+		
+		eg:	mongorestore --uri "mongodb+srv://<username>:<password>.mongodb.net/<database>" 
+		flag: --drop dump // used to drop the existing database to avoid duplicat datas and errors
+
+		Usage:
+			1. Used to backup datas in the for of BSON
+
+		Output:
+			1. a bson dump is mannualy backedup for safety 
+
+	2.mongoimport:
+		Syntax: mongoimport --uri "<Atlas Cluster URI>"
+		
+		eg:	mongoimport --uri "mongodb+srv://<username>:<password>.mongodb.net/<database>" 
+		flag: --drop <json file> // used to drop the existing collection to avoid duplicat datas and errors
+
+		Usage:
+			1. Used to backup datas in the for of JSON
+
+		Output:
+			1. a Collections is mannualy backedup for safety                 
