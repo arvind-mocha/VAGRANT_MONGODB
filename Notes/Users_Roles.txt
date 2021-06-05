@@ -1,0 +1,23 @@
+First User to create:
+    1. start a mongod process
+    2. Connect it with mongo client
+    3. use admin database to create this user
+    4. Then create this user before creating further users
+
+    db.createUser(
+        {   
+            user: "Arvind",
+            pwd: "testtest",
+            roles: [ { db: "admin", role: "userAdmin" } ]
+        }
+    )
+
+    Important:
+        1. All users must be created on admin database
+        2. It is not recomended to use root user
+        3. We must create a admin user first inside mongo shell
+        4. userAdmin has all previlages than other users
+
+    Commands:
+        db.getUsers() // Get the available users
+        db.grantRolesToUser( "dba",  [ { db: "playground", role: "dbOwner"  } ] ) // granting roles for other users

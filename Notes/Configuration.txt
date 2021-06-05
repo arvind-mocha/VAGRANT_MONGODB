@@ -8,6 +8,7 @@ Configuration:
         systemLog:
             path: "/data/log/mongod.log"
             destination: "file"
+            logAppend: true
         replication:
             replSetName: M103
         net:
@@ -17,6 +18,7 @@ Configuration:
             certificateKeyFile: "/etc/tls/tls.pem"
             CAFile: "/etc/tls/TLSCA.pem"
         security:
-            keyFile: "/data/keyfile"
+            authorization: enabled
+            keyFile: "/data/keyfile" // used for checking all nodes have same keyfile
         processManagement:
             fork: true
