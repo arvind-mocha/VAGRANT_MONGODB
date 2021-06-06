@@ -91,9 +91,45 @@ Performing replication:
 
         6. Command to add other running mongod into our replica set => rs.add("localhost:27012") and use rs.status() to check status
 
-        7. rs.isMaster() command is used to get basic infomations about the entire replica set
+        7. Now all databases are shanred among all nodes
+
+        8. after this we can connect to mongod at any port and we will be automatically redirected to the primary node
+
+        9. if we want to connect to secondary node then just ignore replica set name in the --host. check point 4
+
+        10. We can't perform any operations in secondary node, but if we want to read use command => rs.secondaryOk()
+
+        11. We can never write on secondary nodes but we do read, shutdownServer, show dbs and more except write 
 
     Step 3:
-        1. rs.stepDown() is the command use to electe a secondary node to primary safly and we are automatically connected to the new primary 
+        1. rs.isMaster() command is used to get basic infomations about the entire replica set
 
-        2. use rs.isMaster() to check the current primary node
+        2. rs.stepDown() is the command use to electe a secondary node to primary safly and we are automatically connected to the new primary 
+
+        3. use rs.isMaster() to check the current primary node
+
+    Reconfiguration Inside mongo shell:
+        1. we can reconfiure the node with shutting it down
+
+        2. use the command rs.config() or rs.config() to get the configurations
+
+        3. run another mongod process and add it to our replica set. Now we would have even number of node which is not recommended
+
+        4. cfg = rs.conf() //storing the configurations in a variable for modification
+
+        5. cfg.members[3].votes = 0     // Removing the voting previlages by giving only 0 votes
+
+        6. cfg.members[3].hidden = true     //Making node has hidden node
+
+        7.cfg.members[3].priority = 0       //setting the priority of this node being selected as primary node to 0
+
+        8. atlast use rs.reconfig(cfg)  // Now we have reconfigured our replicaset using the cfg variables configurations
+
+        9. Now only the odd number of nodes can vote
+    
+    Node failure:
+        1. If all secondary nodes are shutdown except the primary then we can't connect to the replicaset
+
+        2. we can only connect to the single running node (primary) which is step down to secondary
+
+        3. check step 2 point no 9 to see how to connect to secondary node

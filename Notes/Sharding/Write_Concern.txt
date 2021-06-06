@@ -1,0 +1,12 @@
+Write Comcerns:
+    1. We have the power to check wheater the inserted or updated or deleted document is reflected to all nodes
+
+    2. Syntax => db.collection.insert({values},{writeConcern: {w:3,wtimeout: 60}})
+
+    3. if w = 0 no acknowladegement needed, if w = 1 which is default checks weather write is successfull only on primary node
+
+    4. if w >= 2 waits for acknowledgement of primary and more the one secondary node,if w = "majority" waits for majoriy of node to acknowledege
+
+    5. Increasing the w may also increase the time of response since need to check many nodes 
+    
+    6. wtimeout can be used to end process if take more time to acknowledge

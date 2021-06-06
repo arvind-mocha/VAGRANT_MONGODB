@@ -1,0 +1,9 @@
+Failovers:
+    1. if the primary node in the replica set failed or shutdown the elction takes place and a secondary node is elected as primary node
+
+    2. if you don't want a secondary to be elected as primary node then make it priority as 0 
+    
+    3. command to set priority for election => cfg = rs.conf() then cfg.members[2].priority = 0 then rs.reconfig(cfg)
+
+    4. the node which as no priority comes under the category of passive nodes
+

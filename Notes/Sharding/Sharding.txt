@@ -1,0 +1,40 @@
+Sharding:
+    1. Collection of replica sets is called shardes
+
+    2. we can split our data and store it on different replica sets based on criteria
+
+    3. each replica set can have any number of nodes
+
+    4. We have a prmary replica set and other replica sets are like secondary
+
+    5. we must metion sharding clusterRole for secondary replica sets in the configration file
+
+Configuration:
+    Primary replica set:
+        check Replication file step 1
+
+    Secondary replica sets:
+
+        csrs1.conf:
+    
+            sharding:                           //Must metion this for secondary replica sets
+                clusterRole: configsvr 
+            storage:
+                dbPath: /var/mongodb/db/csrs1
+            net:
+                bindIp: localhost
+                port: 27020
+            security:
+                authorization: enabled
+                keyFile: /var/mongodb/pki/m103-keyfile
+            systemLog:
+                destination: file
+                path: /var/mongodb/db/csvr1/mongod.log
+                logAppend: true
+            processManagement:
+                fork: true
+            replication:
+                replSetName: set2
+
+        csrs2.conf, csrs3.conf:
+            Just need to change storage path, port,log path
