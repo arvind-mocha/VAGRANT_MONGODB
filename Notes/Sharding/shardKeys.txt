@@ -12,12 +12,17 @@ Shardkeys:
     commands:
         1. sh.enableSharding(<database>)    //Enabling Sharding
 
-        2. db.collection.createIndex()         // Create a index. Only index can be a shard key
+        2. db.collection.createIndex(<filed>: 1 or 'hashed)         // Create a index. Only index can be a shard key
 
-        3. sh.shardCollection("<database>.<collection>",{shardkey (index)})     // sharding the database
+        3. sh.shardCollection("<database>.<collection>",{<shardkey(index)> :1 or 'hashed'})     // sharding the database
 
         4. db.collection.getShardDistribution()     // to find weather a collection is sharded ot not
 
         5. have one config replica set replica set and 2 or more server replicaset to see chunks split 
 
         6. use sh.status() again and againg to see chunks get distributed to each replica sets
+
+    Note:
+        1. Always choose many unique value fields as shardkey
+
+        2. always use indexes to find documents

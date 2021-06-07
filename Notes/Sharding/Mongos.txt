@@ -34,5 +34,26 @@ Mongos Configuration:
 	
 	    sh.addShard("<replicaset name>/localhost:27012")	// add shared (replicaset) 
 
+        // default size of a chunk is 64mb. So if your dataset is under 64mb then only one cunk is formed
+        // reconfigure the chunk size use the below commands
+        
+        use config  // must use this database 
+        db.settings.save({_id:"chunksize",value:2})  // 2 is the size of chunk in mb   
+
     Important:
         1. use config database while using sharded clusters.it has details about sharded key, shards available, chunks and more
+
+    Querying:
+        eg: shardKey:{"one":1,"two":1,"three":1}
+
+        you can query using 
+        db.collection.find({one:<value>})
+        db.collection.find({one:<value>,"two":<value>})
+        db.collection.find({one:<value>,"two":<value>,"three":<value>})
+
+        But not 
+
+        db.collection.find({"two":<value>})
+        db.collection.find({"three":<value>})
+
+        The order is very important for making our query efficient
