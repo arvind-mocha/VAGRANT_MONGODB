@@ -10,10 +10,9 @@ Sharding:
     5. we must metion sharding clusterRole for secondary replica sets in the configration file
 
 Configuration:
-    Primary replica set:
-        check Replication file step 1
-
-    Secondary replica sets:
+    Config server replica sets (primary shard):
+        1. Theses acts as a primary node for cluster
+        2. Must create root user for this replica set
 
         csrs1.conf:
     

@@ -39,8 +39,12 @@ Import:
 			1. a bson dump is mannualy backedup for safety 
 
 	2.mongoimport:
+		// uploading data to atlas
 		Syntax: mongoimport --uri "<Atlas Cluster URI>"
 		
+		// uploading data to local shell database
+		mongoimport --db data --collection inspection --file inspection.json --port 27000 -u 'root' -p 'root'  --authenticationDatabase
+
 		eg:	mongoimport --uri "mongodb+srv://<username>:<password>.mongodb.net/<database>" 
 		flag: --drop <json file> // used to drop the existing collection to avoid duplicat datas and errors
 

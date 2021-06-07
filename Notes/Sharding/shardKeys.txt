@@ -1,0 +1,23 @@
+Shardkeys:
+    1. shardkeys are criteria on which each data is seperated into chunks
+
+    2. first we must enable sharding for a database
+
+    3. then Must create indexes before making it as sharkey and only indexes can be shardkeys
+
+    4. a shardkey cannot be unsharded. Think before making a index as shardkey. choose a good shard key
+
+    5. a shard key must be included in all documents.    
+
+    commands:
+        1. sh.enableSharding(<database>)    //Enabling Sharding
+
+        2. db.collection.createIndex()         // Create a index. Only index can be a shard key
+
+        3. sh.shardCollection("<database>.<collection>",{shardkey (index)})     // sharding the database
+
+        4. db.collection.getShardDistribution()     // to find weather a collection is sharded ot not
+
+        5. have one config replica set replica set and 2 or more server replicaset to see chunks split 
+
+        6. use sh.status() again and againg to see chunks get distributed to each replica sets

@@ -8,7 +8,11 @@ Replication:
 Performing replication:
     Step 1:
         node1.conf:
-
+            // add this below line to metion that this replica set is a sharded server. 
+            //This is like a secondary shard for primary shard visit mongos file
+            // must restart all mongod if below line is added after mongos
+            sharding:  
+                clusterRole: shardsvr
             storage:
                 dbPath: /var/mongodb/db/node1       // Must creat this directory
             net:
@@ -26,8 +30,9 @@ Performing replication:
             replication:
                 replSetName: set1
         
-        node1.conf:
-
+        node2.conf:
+            sharding:  
+                clusterRole: shardsvr
             storage:
                 dbPath: /var/mongodb/db/node2
             net:
@@ -46,7 +51,8 @@ Performing replication:
                 replSetName: set1
 
         node3.conf:
-
+            sharding:  
+                clusterRole: shardsvr
             storage:
                 dbPath: /var/mongodb/db/node3
             net:
@@ -86,6 +92,9 @@ Performing replication:
         
         4. connect to the mongod again using command => 
            mongo --host "<replicaset name>/localhost:27011" -u "<username>" -p "<password>" --authenticationDatabase "<database>"
+
+           if your replica set is a shard the you can only connect it using -- port not --host
+           mongo --port "27011" -u "<username>" -p "<password>" --authenticationDatabase "<database>"
         
         5. rs.status() is the command used to find the status like available members in a replica set, which node is primary node and more
 

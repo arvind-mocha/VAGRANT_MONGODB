@@ -1,0 +1,38 @@
+Mongos Configuration:
+    // For indicating the primary shard or configuration server 
+    sharding:       
+        configDB: <replicaset name>/127.0.0.1:27020, 127.0.0.1:27021, 127.0.0.1:27022
+    net:
+        bindIp: localhost
+        port: 27000
+    security:
+        keyFile: /var/mongodb/pki/m103-keyfile
+    systemLog:
+        destination: file
+        path: /var/mongodb/db/node1/mongos.log
+        logAppend: true
+    processManagement:
+        fork: true
+
+    For setting secondary shards visit replication file
+
+    Note:
+        1. config server is the primary server where data comes in and splitted to other shardes
+
+        2. if conf file edited for any mongod process whiel they are running, don't kill the process.
+
+        3. connect to the secondary and shut it down and run again so the updated conf file is used
+
+        4. Do this for all secondary nodes
+
+        5. atlast connect to primary and step it down and electe a secondary as primary node
+
+        6. Now shut sown that last node and rerun it 
+
+    Commands:
+        sh.status()	// check status
+	
+	    sh.addShard("<replicaset name>/localhost:27012")	// add shared (replicaset) 
+
+    Important:
+        1. use config database while using sharded clusters.it has details about sharded key, shards available, chunks and more
